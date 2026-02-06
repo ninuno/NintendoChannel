@@ -6,19 +6,19 @@ var (
 	//go:embed nc.bin
 	DLList []byte
 
-	//go:embed ratings/esrb/EC.jpg
+	//go:embed ratings/esrb/EC-small.jpg
 	ECImage []byte
 
-	//go:embed ratings/esrb/E.jpg
+	//go:embed ratings/esrb/E-small.jpg
 	EImage []byte
 
-	//go:embed ratings/esrb/E10.jpg
+	//go:embed ratings/esrb/E10-small.jpg
 	E10Image []byte
 
-	//go:embed ratings/esrb/T.jpg
+	//go:embed ratings/esrb/T-small.jpg
 	TImage []byte
 
-	//go:embed ratings/esrb/M.jpg
+	//go:embed ratings/esrb/M-small.jpg
 	MImage []byte
 
 	//go:embed ratings/pegi/3.jpg
@@ -36,19 +36,19 @@ var (
 	//go:embed ratings/pegi/18.jpg
 	PEGI18 []byte
 
-	//go:embed ratings/cero/A.jpg
+	//go:embed ratings/cero/A-small.jpg
 	CEROA []byte
 
-	//go:embed ratings/cero/B.jpg
+	//go:embed ratings/cero/B-small.jpg
 	CEROB []byte
 
-	//go:embed ratings/cero/C.jpg
+	//go:embed ratings/cero/C-small.jpg
 	CEROC []byte
 
-	//go:embed ratings/cero/D.jpg
+	//go:embed ratings/cero/D-small.jpg
 	CEROD []byte
 
-	//go:embed ratings/cero/Z.jpg
+	//go:embed ratings/cero/Z-small.jpg
 	CEROZ []byte
 
 	Images = map[RatingGroup][][]byte{
