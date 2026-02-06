@@ -21,19 +21,19 @@ var (
 	//go:embed ratings/esrb/M-small.jpg
 	MImage []byte
 
-	//go:embed ratings/pegi/3.jpg
+	//go:embed ratings/pegi/3-small.jpg
 	PEGI3 []byte
 
-	//go:embed ratings/pegi/7.jpg
+	//go:embed ratings/pegi/7-small.jpg
 	PEGI7 []byte
 
-	//go:embed ratings/pegi/12.jpg
+	//go:embed ratings/pegi/12-small.jpg
 	PEGI12 []byte
 
-	//go:embed ratings/pegi/16.jpg
+	//go:embed ratings/pegi/16-small.jpg
 	PEGI16 []byte
 
-	//go:embed ratings/pegi/18.jpg
+	//go:embed ratings/pegi/18-small.jpg
 	PEGI18 []byte
 
 	//go:embed ratings/cero/A-small.jpg
