@@ -74,9 +74,9 @@ func (l *List) MakeVideoTable() {
 			// Explicit manual line break
 			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
 
-		} else if len(queriedTitle) > 31 {
+		} else if len(queriedTitle) > 51 {
 			// Auto-wrap ONLY if no marker
-			wrapped := wordwrap.WrapString(queriedTitle, 31)
+			wrapped := wordwrap.WrapString(queriedTitle, 51)
 			lines := strings.Split(wrapped, "\n")
 			if len(lines) >= 2 {
 				queriedTitle = lines[0] + "\n" + lines[1]
@@ -184,8 +184,8 @@ func (l *List) MakePopularVideoTable() {
 		if strings.Contains(queriedTitle, "|") {
 			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
 
-		} else if len(queriedTitle) > 31 {
-			wrapped := wordwrap.WrapString(queriedTitle, 31)
+		} else if len(queriedTitle) > 51 {
+			wrapped := wordwrap.WrapString(queriedTitle, 51)
 			lines := strings.Split(wrapped, "\n")
 			if len(lines) >= 2 {
 				queriedTitle = lines[0] + "\n" + lines[1]
