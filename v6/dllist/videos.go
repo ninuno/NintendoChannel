@@ -63,7 +63,7 @@ func (l *List) MakeVideoTable() {
 		var id int
 		var queriedTitle string
 		var length int
-		var videoType int
+		var videoType uint8
 		var dateAdded time.Time
 
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, &dateAdded)
@@ -126,7 +126,7 @@ func (l *List) MakeNewVideoTable() {
 		var id int
 		var queriedTitle string
 		var length int
-		var videoType int
+		var videoType uint8
 
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
@@ -175,7 +175,7 @@ func (l *List) MakePopularVideoTable() {
 		var id int
 		var queriedTitle string
 		var length int
-		var videoType int
+		var videoType uint8
 
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
