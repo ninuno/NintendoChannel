@@ -6,8 +6,6 @@ import (
 	"strings"
 	"time"
 	"unicode/utf16"
-
-	"github.com/mitchellh/go-wordwrap"
 )
 
 type VideoTable struct {
@@ -71,21 +69,6 @@ func (l *List) MakeVideoTable() {
 
 		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [123]uint16
-		if strings.Contains(queriedTitle, "|") {
-			// Explicit manual line break
-			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
-
-		} else if len(queriedTitle) > 51 {
-			// Auto-wrap ONLY if no marker
-			wrapped := wordwrap.WrapString(queriedTitle, 51)
-			lines := strings.Split(wrapped, "\n")
-			if len(lines) >= 2 {
-				queriedTitle = lines[0] + "\n" + lines[1]
-			} else {
-				queriedTitle = lines[0]
-			}
-		}
-
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
 
@@ -134,19 +117,6 @@ func (l *List) MakeNewVideoTable() {
 
 		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
-		if strings.Contains(queriedTitle, "|") {
-			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
-
-		} else if len(queriedTitle) > 51 {
-			wrapped := wordwrap.WrapString(queriedTitle, 51)
-			lines := strings.Split(wrapped, "\n")
-			if len(lines) >= 2 {
-				queriedTitle = lines[0] + "\n" + lines[1]
-			} else {
-				queriedTitle = lines[0]
-			}
-		}
-
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
 
@@ -184,19 +154,6 @@ func (l *List) MakePopularVideoTable() {
 
 		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
-		if strings.Contains(queriedTitle, "|") {
-			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
-
-		} else if len(queriedTitle) > 51 {
-			wrapped := wordwrap.WrapString(queriedTitle, 51)
-			lines := strings.Split(wrapped, "\n")
-			if len(lines) >= 2 {
-				queriedTitle = lines[0] + "\n" + lines[1]
-			} else {
-				queriedTitle = lines[0]
-			}
-		}
-
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
 
