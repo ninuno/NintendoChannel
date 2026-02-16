@@ -3,6 +3,7 @@ package dllist
 import (
 	"NintendoChannel/common"
 	"NintendoChannel/constants"
+	"strings"
 	"time"
 	"unicode/utf16"
 )
@@ -65,6 +66,7 @@ func (l *List) MakeVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, &dateAdded)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [123]uint16
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
@@ -112,6 +114,7 @@ func (l *List) MakeNewVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
@@ -147,6 +150,7 @@ func (l *List) MakePopularVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
 		tempTitle := utf16.Encode([]rune(queriedTitle))
 		copy(title[:], tempTitle)
