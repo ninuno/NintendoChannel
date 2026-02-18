@@ -6,13 +6,14 @@ import (
 	"bytes"
 	_ "embed"
 	"fmt"
-	"golang.org/x/image/draw"
 	"image"
 	"image/color"
 	"image/jpeg"
 	"image/png"
 	"net/http"
 	"os"
+
+	"golang.org/x/image/draw"
 )
 
 var regionToStr = map[constants.Region]string{
@@ -88,7 +89,7 @@ func (i *Info) WriteCoverArt(buffer *bytes.Buffer, titleType constants.TitleType
 		// Creates a blank white image which will then be layered by the cover
 		newImage := image.NewRGBA(image.Rect(0, 0, 384, 384))
 		draw.Draw(newImage, newImage.Bounds(), &image.Uniform{C: color.RGBA{R: 255, G: 255, B: 255, A: 255}}, image.Point{}, draw.Src)
-		draw.Draw(newImage, img.Bounds().Add(offset), img, image.Point{}, draw.Src)
+		draw.Draw(newImage, img.Bounds().Add(offset), img, image.Point{}, draw.Over)
 
 		err = jpeg.Encode(buffer, newImage, nil)
 		common.CheckError(err)
@@ -118,4 +119,33 @@ func resize(origImage image.Image, x, y int) image.Image {
 	newImage := image.NewRGBA(image.Rect(0, 0, x, y))
 	draw.BiLinear.Scale(newImage, newImage.Bounds(), origImage, origImage.Bounds(), draw.Over, nil)
 	return newImage
+}
+
+func (i *Info) WriteRatingDescriptor(buffer *bytes.Buffer, region constants.Region, RatingDescriptors []string) {
+	// Cap
+	maxDescriptors := min(len(RatingDescriptors), 7)
+	for j := 0; j < maxDescriptors; j++ {
+		s := RatingDescriptors[j]
+
+		// Skip empty strings
+		if s == "" {
+			continue
+		}
+
+		// Find matching descriptor image
+		var descriptorImage []byte
+		switch region {
+		case constants.Japan:
+			descriptorImage = constants.CERODescriptors[s]
+		case constants.PAL:
+			descriptorImage = constants.PEGIDescriptors[s]
+		case constants.NTSC:
+			descriptorImage = constants.ESRBDescriptors[s]
+		}
+
+		// Set picture table entry
+		i.Header.DetailedRatingPictureTable[j].PictureOffset = i.GetCurrentSize(buffer)
+		buffer.Write(descriptorImage)
+		i.Header.DetailedRatingPictureTable[j].PictureSize = uint32(len(descriptorImage))
+	}
 }

@@ -182,6 +182,12 @@ var TouchGenIDs = []string{
 	"RFN", "RFP", "R64", "RYW",
 }
 
+var PaynPlayIDs = []string{
+	"WFC", "R3B", "WR9", "WRX", "SJD", "SD2", "SJX",
+	"SJO", "SE3", "SZA", "SZB", "R9J", "SXE", "SXI", "R36",
+	"SXA", "SWA", "SWB", "SXF", "R9O", "SUS", "SU3", "R83",
+  
+}
 var DevAppIDs = []string{
 	"007E", "091E", "410E", "413E", "5NEA", "RAAE",
 }
