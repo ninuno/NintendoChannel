@@ -69,6 +69,7 @@ func (l *List) MakeVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, &dateAdded)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [123]uint16
 		if strings.Contains(queriedTitle, "|") {
 			// Explicit manual line break
@@ -131,6 +132,7 @@ func (l *List) MakeNewVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
 		if strings.Contains(queriedTitle, "|") {
 			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
@@ -180,6 +182,7 @@ func (l *List) MakePopularVideoTable() {
 		err = rows.Scan(&id, &queriedTitle, &length, &videoType, nil)
 		common.CheckError(err)
 
+		queriedTitle = strings.TrimSpace(queriedTitle)
 		var title [102]uint16
 		if strings.Contains(queriedTitle, "|") {
 			queriedTitle = strings.ReplaceAll(queriedTitle, "|", "\n")
