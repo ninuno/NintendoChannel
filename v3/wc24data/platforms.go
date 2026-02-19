@@ -7,8 +7,8 @@ import (
 
 type Platform struct {
 	TypeID       uint8
-	Unk          uint8
 	PlatformName [29]uint16
+	_            uint8
 	GroupId      uint32
 }
 
@@ -22,7 +22,6 @@ func (w *WC24Data) MakePlatformTable() {
 
 		data := Platform{
 			TypeID:       titleType.TypeID,
-			Unk:          48,
 			PlatformName: consoleNameFinal,
 			GroupId:      uint32(titleType.GroupID),
 		}
