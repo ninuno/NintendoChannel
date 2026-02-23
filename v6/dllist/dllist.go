@@ -9,7 +9,7 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
-	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/wii-tools/lzx/lz10"
 	"hash/crc32"
 	"io"
@@ -58,7 +58,7 @@ func MakeDownloadList(_generateTitles bool) {
 	dbString := fmt.Sprintf("postgres://%s:%s@%s/%s", config.Username, config.Password, config.DatabaseAddress, config.DatabaseName)
 	dbConf, err := pgxpool.ParseConfig(dbString)
 	common.CheckError(err)
-	pool, err = pgxpool.ConnectConfig(ctx, dbConf)
+	pool, err = pgxpool.NewWithConfig(ctx, dbConf)
 	common.CheckError(err)
 
 	// Ensure this Postgresql connection is valid.

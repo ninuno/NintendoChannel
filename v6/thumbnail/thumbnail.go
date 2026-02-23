@@ -8,7 +8,7 @@ import (
 	_ "embed"
 	"encoding/binary"
 	"fmt"
-	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"os"
 )
 
@@ -39,7 +39,7 @@ func WriteThumbnail() {
 	dbString := fmt.Sprintf("postgres://%s:%s@%s/%s", config.Username, config.Password, config.DatabaseAddress, config.DatabaseName)
 	dbConf, err := pgxpool.ParseConfig(dbString)
 	common.CheckError(err)
-	pool, err := pgxpool.ConnectConfig(context.Background(), dbConf)
+	pool, err := pgxpool.NewWithConfig(context.Background(), dbConf)
 	common.CheckError(err)
 
 	// Ensure this Postgresql connection is valid.
